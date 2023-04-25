@@ -13,6 +13,7 @@ void insertion_sort_list(listint_t **list)
 {
 	listint_t *node;
 	listint_t *nxt, *ax, *st, *tmp;
+
 	node = *list;
 	st = NULL;
 
@@ -21,32 +22,32 @@ void insertion_sort_list(listint_t **list)
 		nxt = node->next;
 		if (st == NULL || st->n > node->n)
 		{
-			node->next = sorted;
+			node->next = st;
 			st = node;
 		}
 		else
 		{
 			ax = st;
-			while (aux->next != NULL && aux->next->n <= curr->n)
-                                aux = aux->next;
+			while (ax->next != NULL && ax->next->n <= node->n)
+				ax = ax->next;
 
-                        if (aux->next == NULL)
-                        {
-                                aux->next = curr;
-                                curr->prev = aux;
-                                curr->next = NULL;
-                        } else
-                        {
-                                temp = aux->next;
-                                aux->next = curr;
-                                curr->prev = aux;
-                                curr->next = temp;
-                                temp->prev = curr;
-                        }
-                }
+			if (ax->next == NULL)
+			{
+				ax->next = node;
+				node->prev = ax;
+				node->next = NULL;
+			} else
+			{
+				tmp = ax->next;
+				ax->next = node;
+				node->prev = ax;
+				node->next = tmp;
+				tmp->prev = node;
+			}
+		}
 
-                curr = next;
-        }
+		node = nxt;
+	}
 
-        *list = sorted;
+	*list = st;
 }
