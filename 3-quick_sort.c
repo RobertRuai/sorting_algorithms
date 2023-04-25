@@ -33,10 +33,9 @@ int part(int *array, int low, int high, int size)
 	int pv, i, j;
 
 	pv = array[high];
-	j = 0;
 	i = (low - 1);
 
-	for (j = low; j <= high - 1; j++)
+	for (j = low; j < high - 1; j++)
 	{
 		if (array[j] < pv)
 		{
@@ -63,7 +62,7 @@ int part(int *array, int low, int high, int size)
 
 void sort(int *array, int low, int high, size_t size)
 {
-	size_t pt;
+	int pt;
 
 	if (low < high)
 	{
@@ -89,6 +88,7 @@ void quick_sort(int *array, size_t size)
 	low = 0;
 	high = size - 1;
 
-	if (array)
-		sort(array, low, high, size);
+	if (!array)
+		return;
+	sort(array, low, high, size);
 }
