@@ -30,8 +30,11 @@ void swap(int *a, int *b)
 
 int part(int *array, int low, int high, int size)
 {
-	int pv = array[high];
-	int j, i = (low - 1);
+	int pv, i, j;
+
+	pv = array[high];
+	j = 0;
+	i = (low - 1);
 
 	for (j = low; j <= high - 1; j++)
 	{
@@ -60,7 +63,7 @@ int part(int *array, int low, int high, int size)
 
 void sort(int *array, int low, int high, size_t size)
 {
-	int pt;
+	size_t pt;
 
 	if (low < high)
 	{
